@@ -10,12 +10,12 @@
 -- This will probably fail if their is a child table using this.
 -- I can probably make this cleaner also, but ... no time today
 
-create function inline_0() returns integer as '
+create or replace function inline_0() returns integer as '
 declare
     rec        acs_reference_repositories%ROWTYPE;
 begin
     for rec in select * from acs_reference_repositories where upper(table_name) like ''CURRENC%'' loop
-	 execute ''drop table '' || rec.table_name;
+	 execute ''drop table '' || rec.table_name || '' cascade'';
          perform acs_reference__delete(rec.repository_id);
     end loop;
     return 0;
