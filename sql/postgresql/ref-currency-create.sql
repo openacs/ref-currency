@@ -12,7 +12,7 @@ create table currencies (
         constraint currencies_code_a_pk
         primary key,
     -- this is the currency #
-    codeN number,
+    codeN numeric,
     -- this is the minor unit
     -- not sure of the use but it is in the standar
     minor_unit char(1),
@@ -33,10 +33,10 @@ comment on table currencies is '
 -- add this table into the reference repository
 select acs_reference__new (
     'CURRENCIES', -- table_name
+    '2000-10-30',
     'ISO 4217', -- source
     'http://www.iso.ch', -- source_url
-    to_date('2000-10-30','YYYY-MM-DD'), --last_update
-    sysdate() -- effective_date
+    now() -- effective_date
 );
 
 -- This is the translated mapping of country names
@@ -47,7 +47,7 @@ create table currency_names (
         constraint currency_names_iso_fk
         references currencies (codeA),
     -- lookup into the language_codes table
-    language_code 
+    language_code char(2)
         constraint currency_names_lang_code_fk
         references language_codes (language_id),
     -- the translated name
@@ -62,6 +62,15 @@ comment on column currency_names.language_code is '
     This is a lookup into the iso languages table.
 ';
 
+-- add this table into the reference repository
+select acs_reference__new (
+    'CURRENCY_NAMES', -- table_name
+    '2000-10-30',
+    'ISO 4217', -- source
+    'http://www.iso.ch', -- source_url
+    now() -- effective_date
+);
+
 -- map from currencies to country
 create table currency_country_map (
     codeA char(3)
@@ -75,13 +84,17 @@ create table currency_country_map (
         references countries (iso)
 );
 
+-- add this table into the reference repository
+select acs_reference__new (
+    'CURRENCY_COUNTRY_MAP', -- table_name
+    '2000-10-30',
+    'ISO 4217', -- source
+    'http://www.iso.ch', -- source_url
+    now() -- effective_date
+);
 -- I will add a view to join this stuff later.
 
 -- initial data for currencies
-/i ../common/ref-currency-data.sql
-
-
-
-
-
-
+begin;
+\i ../common/ref-currency-data.sql
+end;
