@@ -13,7 +13,7 @@
         <database>postgresql</database>
     </database-support>
         <owner url="mailto:jon@jongriffin.com">Jon Griffin</owner>
-        <summary>This is the currency sub-module for acs-reference.</summary>
+        <summary>Currency Data, ISO 4217 for acs-reference.</summary>
         <vendor url="www.mayuli.com">Mayuli Enterprises, LLC</vendor>
         <description format="text/plain">This is the currency sub-module for acs-reference.
 It provides ISO 4217 compatibility.</description>
