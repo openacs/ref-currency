@@ -93,8 +93,3 @@ select acs_reference__new (
     now() -- effective_date
 );
 -- I will add a view to join this stuff later.
-
--- initial data for currencies
-begin;
-\i ../common/ref-currency-data.sql
-end;

@@ -110,12 +110,3 @@ end;
 /
 
 -- I will add a view to join this stuff later.
-
--- initial data for currencies
-@ '../common/ref-currency-data.sql'
-
-
-
-
-
-
