@@ -78,7 +78,7 @@ create table currency_country_map (
 -- I will add a view to join this stuff later.
 
 -- initial data for currencies
-/i ../common/currency-data.sql
+/i ../common/ref-currency-data.sql
 
 
 
